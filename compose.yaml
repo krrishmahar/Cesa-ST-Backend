@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    container_name: cesa-postgres
+    environment:
+      - 'POSTGRES_DB=cesadb'
+      - 'POSTGRES_PASSWORD=password'
+      - 'POSTGRES_USER=myuser'
+    ports:
+      - "5432:5432"
+    volumes:
+      - cesa_pg_data:/var/lib/postgresql
+
+volumes:
+  cesa_pg_data:
+
