@@ -9,4 +9,3 @@ public class SubmitRequest {
     private String userId;
     private List<AnswerRequest> answers;
 }
-
