@@ -18,3 +18,14 @@ spring:
 
 server:
   port: 8080
+  servlet:
+    context-path: /api/v1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics
+
+jwt:
+  secret: CesaCsi
