@@ -68,3 +68,6 @@ build/
 # virtual machine crash logs, see http://www.java.com
 hs_err_pid*
 
+.env
+.env.local
+.env.properties
