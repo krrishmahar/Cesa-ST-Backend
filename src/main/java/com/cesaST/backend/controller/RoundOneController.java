@@ -4,6 +4,7 @@ import com.cesaST.backend.dto.SubmitRequest;
 import com.cesaST.backend.model.McqQuestions;
 import com.cesaST.backend.service.McqService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class RoundOneController {
 
     private final McqService mcqService;
 
+    @PreAuthorize("hasRole('INTERNAL')")
     @GetMapping("/questions")
     public List<McqQuestions> getQuestions() {
         return mcqService.getAllQuestions();

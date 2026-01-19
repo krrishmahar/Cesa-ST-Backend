@@ -8,6 +8,5 @@ import lombok.Setter;
 public class TeamLoginRequest {
     private String teamName;
     private String leaderName;
-    private String teamCode;
 }
 
