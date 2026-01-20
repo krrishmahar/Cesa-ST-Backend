@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -47,12 +48,22 @@ public class RoundOneController {
     //    ################ PUBLIC ####################
 
     @PostMapping("/submit")
-    public Result submit(@RequestBody SubmitRequest request) {
-        int score = mcqService.evaluateAnswers(request.getAnswers());
-        return new Result(score, request.getAnswers().size());
+    public Result submit(@RequestBody SubmitRequest request,
+                                    Principal principal) {
+
+        return mcqService.submitRound1(
+                principal.getName(),
+                request.getAnswers()
+        );
     }
 
-    record Result(int score, int total) {}
+
+    @GetMapping("/play")
+    public List<McqQuestions> play() {
+        return mcqService.getShuffledQuestions();
+    }
+
+    public record Result(int score, int total) {}
 }
 
 
