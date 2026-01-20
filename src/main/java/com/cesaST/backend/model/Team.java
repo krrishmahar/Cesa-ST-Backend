@@ -18,9 +18,21 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String teamName;
     private String leaderName;
-//    private String teamCode;   // from Unstop / CollegeBuzz or whatever shaan is building
+
+    @Column(columnDefinition = "integer default 0")
+    private int round1Score;
+
+    @Column(columnDefinition = "integer default 0")
+    private int round2Score;
+
+    @Column(columnDefinition = "integer default 0")
+    private int round3Score;
+
+    @Column(columnDefinition = "integer default 0")
+    private int overallScore;
 
     private boolean active;
 

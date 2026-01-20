@@ -19,7 +19,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Team team = userRepo.findByTeamName(username);
+        Team team = userRepo.findByTeamName(username).orElseThrow(() -> new RuntimeException("Invalid Team"));
         if (team == null) {
             System.out.println("User Not Found");
             throw new UsernameNotFoundException("user not found");

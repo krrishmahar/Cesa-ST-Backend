@@ -40,7 +40,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
             if (teamName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-                Team team = teamRepo.findByTeamName(teamName);
+                Team team = teamRepo.findByTeamName(teamName).orElseThrow(() -> new RuntimeException("Invalid Team"));
 
                 if (team != null) {
                     TeamPrincipal userDetails = new TeamPrincipal(team);

@@ -21,6 +21,5 @@ public class AuthController {
     public ResponseEntity<LoginResponse> login(@RequestBody TeamLoginRequest req) {
         return ResponseEntity.ok(teamService.login(req));
     }
-
 }
 

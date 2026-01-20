@@ -18,6 +18,32 @@ public class McqService {
         return repository.findAll();
     }
 
+    public McqQuestions getQuestionById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Question not found"));
+    }
+
+    public McqQuestions createQuestion(McqQuestions question) {
+        // Ensure ID is null so it creates a new entry
+        question.setId(null);
+        return repository.save(question);
+    }
+
+    public McqQuestions updateQuestion(Long id, McqQuestions updatedRequest) {
+
+        McqQuestions existing = getQuestionById(id);
+
+        existing.setQuestion(updatedRequest.getQuestion());
+        existing.setOptions(updatedRequest.getOptions());
+        existing.setCorrectAnswer(updatedRequest.getCorrectAnswer());
+
+        return repository.save(existing);
+    }
+
+    public void deleteQuestion(Long id) {
+        repository.deleteById(id);
+    }
+
     public int evaluateAnswers(List<AnswerRequest> answers) {
         int score = 0;
 
@@ -27,7 +53,7 @@ public class McqService {
                 score++;
             }
         }
-
         return score;
     }
+
 }
