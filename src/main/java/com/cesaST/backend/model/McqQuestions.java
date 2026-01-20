@@ -1,5 +1,6 @@
 package com.cesaST.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,5 +26,6 @@ public class McqQuestions {
     @Column(name = "option_text")
     private List<String> options;
 
-    private String correctAnswer;
+    @JsonIgnore
+    private Integer correctAnswerIndex;
 }

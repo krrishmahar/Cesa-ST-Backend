@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class AnswerRequest {
     private Long questionId;
-    private String answer;
+    private Integer answerIndex;
 }
