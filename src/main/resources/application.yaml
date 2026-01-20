@@ -1,9 +1,12 @@
 spring:
+  profiles:
+    active: dev
+
   application:
     name: backend
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/cesadb
+    url: ${DATABASE_URL}
     username: myuser
     password: password
     driver-class-name: org.postgresql.Driver
@@ -11,12 +14,12 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         format_sql: true
   config:
-    import: optional:file:.env.properties
+    import: optional:file:.env[.properties]
 
 server:
   port: 8080
